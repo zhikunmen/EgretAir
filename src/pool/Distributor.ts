@@ -37,6 +37,7 @@ module pool {
 					return obj;
 				}
 			}
+			return null;
 		}
 
 		public clear(): void{

@@ -37,6 +37,7 @@ var pool;
                     return obj;
                 }
             }
+            return null;
         };
         p.clear = function () {
             var obj = null;

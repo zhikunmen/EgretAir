@@ -9,4 +9,4 @@ module pool {
 		/**清除所有未使用的对象 */
 		clear(): void;
 	}
-}
+} 
