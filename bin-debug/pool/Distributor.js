@@ -1,3 +1,6 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
 var pool;
 (function (pool) {
     var Distributor = (function () {
@@ -8,8 +11,7 @@ var pool;
             this._usedPool = {};
             this._idlePool = {};
         }
-        var d = __define,c=Distributor,p=c.prototype;
-        p.distribution = function (val) {
+        Distributor.prototype.distribution = function (val) {
             if (val.isIdle) {
                 this._idlePool[val.hashc] = val;
                 delete this._usedPool[val.hashc];
@@ -19,7 +21,7 @@ var pool;
                 delete this._idlePool[val.hashc];
             }
         };
-        p.addVo = function (val) {
+        Distributor.prototype.addVo = function (val) {
             val.setProtocol(this);
             if (val.isIdle) {
                 this._idlePool[val.hashc] = val;
@@ -28,7 +30,7 @@ var pool;
                 this._usedPool[val.hashc] = val;
             }
         };
-        p.getVo = function (type) {
+        Distributor.prototype.getVo = function (type) {
             var obj = null;
             for (var key in this._idlePool) {
                 obj = this._idlePool[key];
@@ -39,7 +41,7 @@ var pool;
             }
             return null;
         };
-        p.clear = function () {
+        Distributor.prototype.clear = function () {
             var obj = null;
             for (var key in this._idlePool) {
                 obj = this._idlePool[key];
@@ -51,6 +53,6 @@ var pool;
         return Distributor;
     }());
     pool.Distributor = Distributor;
-    egret.registerClass(Distributor,'pool.Distributor',["pool.IDistributor"]);
+    __reflect(Distributor.prototype, "pool.Distributor", ["pool.IDistributor"]);
 })(pool || (pool = {}));
 //# sourceMappingURL=Distributor.js.map

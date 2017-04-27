@@ -1,3 +1,6 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
 var pool;
 (function (pool) {
     /**生成器类 */
@@ -6,11 +9,10 @@ var pool;
             this._dis = null;
             this.init(val);
         }
-        var d = __define,c=BallGenerator,p=c.prototype;
-        p.init = function (val) {
+        BallGenerator.prototype.init = function (val) {
             this._dis = val;
         };
-        p.getBall = function (type) {
+        BallGenerator.prototype.getBall = function (type) {
             var vo = this._dis.getVo(type);
             if (vo == null) {
                 //创建一个对象
@@ -20,7 +22,7 @@ var pool;
             }
             return vo;
         };
-        p.createVo = function (type) {
+        BallGenerator.prototype.createVo = function (type) {
             switch (type) {
                 case pool.BallType.base:
                     return new pool.BaseBall();
@@ -33,6 +35,6 @@ var pool;
         return BallGenerator;
     }());
     pool.BallGenerator = BallGenerator;
-    egret.registerClass(BallGenerator,'pool.BallGenerator');
+    __reflect(BallGenerator.prototype, "pool.BallGenerator");
 })(pool || (pool = {}));
 //# sourceMappingURL=BallGenerator.js.map

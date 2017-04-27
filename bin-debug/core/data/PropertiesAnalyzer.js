@@ -15,6 +15,14 @@
  * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var RES;
 (function (RES) {
     // 读取本地数据，重度或重度游戏使用
@@ -30,21 +38,21 @@ var RES;
     var PropertiesAnalyzer = (function (_super) {
         __extends(PropertiesAnalyzer, _super);
         function PropertiesAnalyzer() {
-            _super.call(this);
-            this._dataFormat = egret.URLLoaderDataFormat.TEXT;
+            var _this = _super.call(this) || this;
+            _this._dataFormat = egret.URLLoaderDataFormat.TEXT;
+            return _this;
         }
-        var d = __define,c=PropertiesAnalyzer,p=c.prototype;
         /**
          * @inheritDoc
          */
-        p.getRes = function (name) {
+        PropertiesAnalyzer.prototype.getRes = function (name) {
             var tail = RES.AnalyzerBase.getStringTail(name);
             return this.fileDic[tail];
         };
         /**
          * 解析并缓存加载成功的数据
          */
-        p.analyzeData = function (resItem, data) {
+        PropertiesAnalyzer.prototype.analyzeData = function (resItem, data) {
             if (!data) {
                 return;
             }
@@ -58,10 +66,10 @@ var RES;
                 }
             }
         };
-        PropertiesAnalyzer.TYPE = "prop";
         return PropertiesAnalyzer;
     }(RES.BinAnalyzer));
+    PropertiesAnalyzer.TYPE = "prop";
     RES.PropertiesAnalyzer = PropertiesAnalyzer;
-    egret.registerClass(PropertiesAnalyzer,'RES.PropertiesAnalyzer');
+    __reflect(PropertiesAnalyzer.prototype, "RES.PropertiesAnalyzer");
 })(RES || (RES = {}));
 //# sourceMappingURL=PropertiesAnalyzer.js.map

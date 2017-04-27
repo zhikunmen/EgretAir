@@ -1,3 +1,11 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 /**
   * tips类
   * by dily
@@ -13,14 +21,14 @@ var TipsPanel = (function (_super) {
     */
     function TipsPanel(descStr) {
         if (descStr === void 0) { descStr = ""; }
-        _super.call(this);
-        this.descStr = "";
-        this.descStr = descStr;
-        this.initUI();
+        var _this = _super.call(this) || this;
+        _this.descStr = "";
+        _this.descStr = descStr;
+        _this.initUI();
+        return _this;
     }
-    var d = __define,c=TipsPanel,p=c.prototype;
     // 初始化面板
-    p.initUI = function () {
+    TipsPanel.prototype.initUI = function () {
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("tipsBg");
         this.addChild(this.bg);
@@ -43,5 +51,5 @@ var TipsPanel = (function (_super) {
     };
     return TipsPanel;
 }(BasePanel));
-egret.registerClass(TipsPanel,'TipsPanel');
+__reflect(TipsPanel.prototype, "TipsPanel");
 //# sourceMappingURL=TipsPanel.js.map

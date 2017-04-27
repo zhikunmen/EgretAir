@@ -1,51 +1,65 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var pool;
 (function (pool) {
     var FootBall = (function (_super) {
         __extends(FootBall, _super);
         function FootBall() {
-            _super.call(this);
-            this._isIdel = true;
-            this._type = pool.BallType.foot;
-            this._message = "";
+            var _this = _super.call(this) || this;
+            _this._isIdel = true;
+            _this._type = pool.BallType.foot;
+            _this._message = "";
+            return _this;
         }
-        var d = __define,c=FootBall,p=c.prototype;
-        p.reset = function () {
+        FootBall.prototype.reset = function () {
             this._isIdel = false;
             this._dis.distribution(this);
             this._message = "这是一个足球";
         };
-        p.dispose = function () {
+        FootBall.prototype.dispose = function () {
             this._isIdel = true;
             this._dis.distribution(this);
         };
-        p.del = function () {
+        FootBall.prototype.del = function () {
             this.dispose();
             this._dis = null;
         };
-        p.setProtocol = function (val) {
+        FootBall.prototype.setProtocol = function (val) {
             this._dis = val;
         };
-        d(p, "type"
-            ,function () {
+        Object.defineProperty(FootBall.prototype, "type", {
+            get: function () {
                 return this._type;
-            }
-        );
-        d(p, "hashc"
-            ,function () {
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(FootBall.prototype, "hashc", {
+            get: function () {
                 return this.hashCode;
-            }
-        );
-        d(p, "isIdle"
-            ,function () {
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(FootBall.prototype, "isIdle", {
+            get: function () {
                 return this._isIdel;
-            }
-        );
-        p.action = function () {
+            },
+            enumerable: true,
+            configurable: true
+        });
+        FootBall.prototype.action = function () {
             console.log(this._message);
         };
         return FootBall;
     }(egret.HashObject));
     pool.FootBall = FootBall;
-    egret.registerClass(FootBall,'pool.FootBall',["pool.IBall"]);
+    __reflect(FootBall.prototype, "pool.FootBall", ["pool.IBall"]);
 })(pool || (pool = {}));
 //# sourceMappingURL=FootBall.js.map
